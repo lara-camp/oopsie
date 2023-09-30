@@ -1,0 +1,26 @@
+{
+    "name": "tallers/oopsie",
+    "description": "Oopsie is Error Tracking and Debugging tools for Laravel Base Projects.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tallers\\Oopsie\\": "src"
+        }
+    },
+    "authors": [
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.1",
+        "monolog/monolog": "^3.4"
+    },
+    "extra": {
+        "laravel":{
+            "providers":[
+                "Tallers\\Oopsie\\OopsieServiceProvider"
+            ]
+        }
+    }
+}

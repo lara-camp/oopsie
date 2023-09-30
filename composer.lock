@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "0e18344bbf048af63abf9b196f7e0594",
     "packages": [
         {
             "name": "brick/math",
@@ -5345,6 +5345,39 @@
             "time": "2023-08-24T14:51:05+00:00"
         },
         {
+            "name": "tallers/oopsie",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./oopsie",
+                "reference": "b729bb817f7502f884563be6c72d28dc23fdb6aa"
+            },
+            "require": {
+                "monolog/monolog": "^3.4",
+                "php": "^8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tallers\\Oopsie\\OopsieServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tallers\\Oopsie\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Oopsie is Error Tracking and Debugging tools for Laravel Base Projects.",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.6",
             "source": {
@@ -8053,7 +8086,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "tallers/oopsie": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
