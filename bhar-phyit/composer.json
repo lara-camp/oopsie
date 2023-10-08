@@ -1,0 +1,30 @@
+{
+    "name": "tallers/bhar-phyit",
+    "description": "Error Tracking and debugging tool for laravel based projects.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tallers\\BharPhyit\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "TALLers"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.1",
+        "monolog/monolog": "^3.4",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "extra": {
+        "laravel":{
+            "providers":[
+                "Tallers\\BharPhyit\\BharPhyitServiceProvider"
+            ]
+        }
+    }
+}
