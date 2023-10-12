@@ -11,6 +11,7 @@ class BharPhyitHandler extends AbstractProcessingHandler
 {
     protected function write(LogRecord $record): void
     {
-        error($record->formatted);
+        dd($record);
+        error(json_encode($record));
     }
 }

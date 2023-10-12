@@ -15,10 +15,17 @@ class BharPhyitServiceProvider extends PackageServiceProvider
         $package
             ->name('bhar-phyit')
             ->hasConfigFile()
+            ->publishesServiceProvider('BharPhyitServiceProvider')
+            ->hasMigrations([
+                'create_bhar_phyit_error_logs_table',
+                'create_bhar_phyit_error_log_details_table',
+            ])
             ->hasInstallCommand(function (InstallCommand $command): void {
                 $command
                     ->publishConfigFile()
                     ->copyAndRegisterServiceProviderInApp()
+                    ->publishMigrations()
+                    ->askToRunMigrations()
                     ->askToStarRepoOnGitHub('tallers/bhar-phyit');
             });
     }
