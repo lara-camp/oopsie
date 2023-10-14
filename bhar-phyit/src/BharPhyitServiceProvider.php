@@ -23,7 +23,6 @@ class BharPhyitServiceProvider extends PackageServiceProvider
             ->hasInstallCommand(function (InstallCommand $command): void {
                 $command
                     ->publishConfigFile()
-                    ->copyAndRegisterServiceProviderInApp()
                     ->publishMigrations()
                     ->askToRunMigrations()
                     ->askToStarRepoOnGitHub('tallers/bhar-phyit');

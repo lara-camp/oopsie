@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bhar_phyit_error_log_details', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+            $table->foreignUlid('bhar_phyit_error_logs_id');
+            $table->jsonb('payload');
+            $table->nullableUlidMorphs('user');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

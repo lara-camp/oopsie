@@ -12,7 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bhar_phyit_error_logs', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+            $table->text('title');
+            $table->jsonb('body');
+            $table->string('line');
+            $table->text('url');
+            $table->string('method');
+            $table->unsignedBigInteger('occurrences')->default(0);
+            $table->timestamp('resolved_at')->nullable();
+            $table->string('status');
+            $table->jsonb('additionals')->nullable();
+            $table->timestamp('snooze_until')->nullable();
+            $table->timestamp('last_occurred_at');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
