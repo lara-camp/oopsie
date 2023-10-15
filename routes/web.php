@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (): void {
+Route::get('/test', function (): void {
     throw new Exception('hi');
 });
