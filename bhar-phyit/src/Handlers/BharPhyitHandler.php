@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\LogRecord;
+use Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder;
 use Tallers\BharPhyit\Enums\BharPhyitErrorLogStatus;
 use Tallers\BharPhyit\Models\BharPhyitErrorLog;
 use Throwable;
 
 class BharPhyitHandler extends AbstractProcessingHandler
 {
+    protected array $queries = [];
+
     protected function write(LogRecord $record): void
     {
         if (! config('bhar-phyit.enabled')) {
@@ -21,6 +24,8 @@ class BharPhyitHandler extends AbstractProcessingHandler
         $exception = data_get($record, 'context.exception');
 
         if ($exception && $exception instanceof Throwable) {
+            $this->queries = app()->make(QueryRecorder::class)->getQueries();
+
             $this->storeBharPhyitErrorLog($exception);
         }
     }
@@ -37,6 +42,7 @@ class BharPhyitHandler extends AbstractProcessingHandler
             'payload' => $this->filterHidden($this->filterPayload(request()->all())),
             'user_id' => auth()->id(),
             'user_type' => auth()->user() instanceof Model ? auth()->user()::class : null,
+            'queries' => $this->queries,
         ]);
 
         $this->updateOccurence($unsolvedErrorLog);

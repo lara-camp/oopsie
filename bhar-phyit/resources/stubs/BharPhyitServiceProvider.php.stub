@@ -2,23 +2,19 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Request;
+use Tallers\BharPhyit\BharPhyit;
 use Tallers\BharPhyit\BharPhyitServiceProvider As ServiceProvider;
 
 class BharPhyitServiceProvider extends ServiceProvider
 {
-     /**
-     * Register services.
-     */
-    public function register(): void
-    {
-        parent::register();
-    }
-
     /**
      * Bootstrap services.
      */
     public function boot(): void
     {
         parent::boot();
+
+          BharPhyit::authUsing(fn (Request $request) => app()->environment('local'));
     }
 }
