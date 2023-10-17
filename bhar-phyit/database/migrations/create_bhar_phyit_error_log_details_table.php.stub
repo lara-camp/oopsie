@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignUlid('bhar_phyit_error_log_id');
             $table->jsonb('payload');
             $table->jsonb('queries')->nullable();
+            $table->jsonb('headers')->nullable();
             $table->nullableUlidMorphs('user');
 
             $table->softDeletes();

@@ -12,11 +12,13 @@ class BharPhyitErrorLogDetail extends BharPhyitBaseModel
         'user_id',
         'user_type',
         'queries',
+        'headers',
     ];
 
     protected $casts = [
         'payload' => 'json',
         'queries' => 'json',
+        'headers' => 'json',
     ];
 
     public function user(): MorphTo

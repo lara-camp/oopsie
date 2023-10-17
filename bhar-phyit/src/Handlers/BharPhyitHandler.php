@@ -24,6 +24,10 @@ class BharPhyitHandler extends AbstractProcessingHandler
         $exception = data_get($record, 'context.exception');
 
         if ($exception && $exception instanceof Throwable) {
+            if ($this->isExceptException($exception)) {
+                return;
+            }
+
             $this->queries = app()->make(QueryRecorder::class)->getQueries();
 
             $this->storeBharPhyitErrorLog($exception);
@@ -43,6 +47,7 @@ class BharPhyitHandler extends AbstractProcessingHandler
             'user_id' => auth()->id(),
             'user_type' => auth()->user() instanceof Model ? auth()->user()::class : null,
             'queries' => $this->queries,
+            'headers' => $this->filterHidden(request()->header()),
         ]);
 
         $this->updateOccurence($unsolvedErrorLog);
@@ -171,5 +176,10 @@ class BharPhyitHandler extends AbstractProcessingHandler
     protected function shouldFilter(mixed $value): bool
     {
         return $value instanceof UploadedFile;
+    }
+
+    protected function isExceptException(Throwable $throwable): bool
+    {
+        return in_array(get_class($throwable), config('bhar-phyit.except', []));
     }
 }
